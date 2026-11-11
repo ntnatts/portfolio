@@ -1,0 +1,201 @@
+{
+  "_help": "Your projects, in the order they appear in the card deck. See HOW-TO-EDIT.md. Put **double stars** around words to highlight them in orange where noted.",
+  "projects": [
+    {
+      "id": "var",
+      "name": "Bank VaR: LSTM vs GARCH",
+      "short": "Bank VaR",
+      "accent": "#F2600C",
+      "tags": ["Market risk", "Deep learning", "Basel backtest"],
+      "stat": "Retrained yearly, the LSTM matched GARCH's accuracy (15 breaks, every test passed) with about 10% less capital.",
+      "cover": "dashboard",
+      "video": null,
+      "previews": [],
+      "title": ["Bank", "VaR"],
+      "label": "Market risk model · MGSC 673",
+      "intro": "Three ways to forecast a bank's worst day: Historical Simulation, GARCH and an LSTM. I built all three for a Canadian bank trading book and backtested them against Basel rules from 2022 to 2026.",
+      "problem": {
+        "text": "Banks set aside capital based on their Value-at-Risk. The industry default, Historical Simulation, only looks at last year, so it reacts to a new crisis weeks late and the regulator penalises it.",
+        "highlight": "reacts to a new crisis weeks late"
+      },
+      "highlights": [
+        { "title": "A trading book built from public data", "text": "Daily prices for the Big Five banks, the TSX, bonds, Canadian yields, VIX and USD/CAD from 2007 to 2026: 4,957 trading days. The portfolio covers equity, rate and FX risk in one book.", "media": { "chart": "breaks" } },
+        { "title": "An LSTM that predicts volatility, then calibrates the tail", "text": "60-day input sequences feed an LSTM(64) that outputs one volatility forecast. Real tails are fatter than a bell curve, so I replaced the normal multiplier (2.33) with one calibrated on validation data (2.81).", "media": { "chart": "capital" } },
+        { "title": "Retrained every year, like a real bank would", "text": "Seven of the LSTM's 17 misses fell in 2026, eight years after its training data ended. Yearly walk-forward retraining cut 2026 misses from 7 to 4 and lifted the capital saving from 7% to 12%.", "media": { "chart": "years" } },
+        { "title": "A dashboard anyone can test", "text": "Pick a model and a period, then drag a what-if buffer to see breaks, the traffic light and capital recompute live. At a buffer of 1.0, every number matches the report.", "media": { "dashboard": true } }
+      ],
+      "stats": [
+        { "number": 15, "suffix": " breaks", "title": "As accurate as GARCH", "text": "Both retrained models broke 15 times on 1,212 test days and passed the Kupiec and Christoffersen tests." },
+        { "number": 10, "prefix": "−", "suffix": "%", "title": "Less capital", "text": "The LSTM's average capital charge was 3.92% of the portfolio against 4.36% for GARCH." },
+        { "number": 17, "suffix": "%", "title": "Days in the yellow zone", "text": "The trade-off: more days on watch with the regulator, and misses that follow calm markets." }
+      ],
+      "overview": [
+        ["Course", "MGSC 673, McGill University"],
+        ["My role", "Data pipeline, models, backtesting and the interactive dashboard"],
+        ["Data", "Yahoo Finance, Bank of Canada, FRED"],
+        ["Methods", "Historical Simulation, GARCH(1,1), LSTM, Kupiec and Christoffersen tests, Basel traffic light"]
+      ],
+      "deliverables": ["Notebook with all three models", "Walk-forward retraining for both GARCH and LSTM", "3-seed LSTM ensemble", "Stress tests on 2008 and COVID", "Failure analysis of every miss", "Interactive Plotly dashboard"],
+      "tech": [
+        ["Split", "Train 2007–2018, validation 2019–2021, test 2022–2026. Scaler fitted on train only."],
+        ["Features", "Portfolio return, 20-day volatility, VIX, yield change, USD/CAD return, TSX return."],
+        ["LSTM", "60-day sequences → LSTM(64) → dropout 0.2 → log-variance. Gaussian negative log-likelihood, Adam, early stopping."],
+        ["Evaluation", "Break counts, Kupiec and Christoffersen tests, Basel traffic light, capital = max(VaR, k × 60-day average VaR)."],
+        ["What I'd do next", "A VaR floor for calm markets, 10 seeds instead of 3, and a rates-heavy portfolio preset."]
+      ],
+      "note": "The dashboard previews use illustrative data; every number in the text, tiles at rest and bar charts comes from the project's backtest.",
+      "charts": {
+        "breaks": {
+          "type": "bars",
+          "title": "Breaks on 1,212 test days, 2022–2026",
+          "caption": "A break is a day the loss beat the VaR forecast. About 12 are expected.",
+          "max": 28, "reference": 12, "referenceLabel": "expected ≈ 12", "decimals": 0, "unit": "",
+          "rows": [
+            { "label": "Historical Simulation", "value": 25, "tone": "base" },
+            { "label": "GARCH, trained once", "value": 12, "tone": "soft" },
+            { "label": "LSTM, trained once", "value": 17, "tone": "soft" },
+            { "label": "GARCH, retrained yearly", "value": 15, "tone": "strong" },
+            { "label": "LSTM, retrained yearly", "value": 15, "tone": "strong" }
+          ]
+        },
+        "capital": {
+          "type": "bars",
+          "title": "Average capital charge, % of portfolio",
+          "caption": "Lower is cheaper for the bank, as long as the model stays accurate.",
+          "max": 5, "decimals": 2, "unit": "%",
+          "rows": [
+            { "label": "Historical Simulation", "value": 4.48, "tone": "base" },
+            { "label": "GARCH, trained once", "value": 4.38, "tone": "soft" },
+            { "label": "LSTM, trained once", "value": 4.17, "tone": "soft" },
+            { "label": "GARCH, retrained yearly", "value": 4.36, "tone": "strong" },
+            { "label": "LSTM, retrained yearly", "value": 3.92, "tone": "strong" }
+          ]
+        },
+        "years": {
+          "type": "years",
+          "title": "LSTM breaks by year",
+          "series": ["trained once", "retrained yearly (3 seeds)"],
+          "years": ["2022", "2023", "2024", "2025", "2026"],
+          "a": [0, 3, 4, 3, 7],
+          "b": [0, 3, 4, 4, 4]
+        }
+      }
+    },
+    {
+      "id": "deaf-game",
+      "name": "LLM Game for Deaf Students",
+      "short": "LLM Game",
+      "accent": "#D9901A",
+      "tags": ["LLM", "RCT, n = 62", "IEEE 2026"],
+      "stat": "Engaged students scored significantly higher than control (p = .022, η²p = .549).",
+      "cover": "img/g1.webp",
+      "video": null,
+      "previews": ["img/g1.webp", "img/g2.webp"],
+      "title": ["Signs", "& words"],
+      "label": "Thesis · Published in IEEE 2026",
+      "intro": "A game-based English learning system for Thai deaf students, with LLM feedback, Thai translation and Thai Sign Language support. Tested in a controlled trial with 62 students.",
+      "problem": {
+        "text": "Deaf students in Thailand learn English as a third language, after Thai Sign Language and written Thai. Many in grades 9 to 12 read English at a grade 6 level, and most teaching tools rely on sound.",
+        "highlight": "read English at a grade 6 level"
+      },
+      "highlights": [
+        { "title": "Three games, five levels each", "text": "Word Choice, Jumble and Matching follow the order people learn language in: vocabulary, then word order, then meaning. Levels alternate new content with review.", "media": { "img": "img/g1.webp", "alt": "Screens from the learning game" } },
+        { "title": "Feedback in the student's own languages", "text": "Gemini 2.5 Flash writes simple hints in English and Thai. 3D pose estimation turns sign language videos into an animated signer. An LLM-as-a-judge test picked Gemini over GPT-4o Mini (4.08 vs 3.68).", "media": { "img": "img/g1.webp", "alt": "Feedback screens in English and Thai" } },
+        { "title": "A controlled trial at a school for the deaf", "text": "62 students, 30 sessions of 20 minutes each. For students who attended at least 70% of sessions, scores improved significantly over the control group.", "media": { "img": "img/g2.webp", "alt": "Trial results" } }
+      ],
+      "stats": [
+        { "number": 62, "title": "Students in the trial", "text": "Grades 9 to 12 at Setsatian School for the Deaf, split into control and intervention groups." },
+        { "number": 0.549, "decimals": 3, "prefix": "η²p ", "title": "Large effect", "text": "Among engaged students, adjusted scores were 9.47 against 5.65 for control (p = .022)." },
+        { "number": 4.08, "decimals": 2, "title": "Feedback quality", "text": "Gemini 2.5 Flash's score out of 5 for accuracy, tone and clarity, rated by an LLM judge." }
+      ],
+      "overview": [
+        ["Type", "Bachelor's thesis, published in IEEE conference proceedings, 2026"],
+        ["My role", "System design, LLM integration, trial analysis"],
+        ["Stack", "Gemini 2.5 Flash, RAG, 3D pose estimation, game app"],
+        ["Methods", "Randomised controlled trial, ANCOVA, intention-to-treat and per-protocol analysis"]
+      ],
+      "deliverables": ["Three-mode learning game", "LLM feedback in English and Thai", "Thai Sign Language animation", "RAG-based personalisation", "Controlled trial with 62 students", "Published paper"],
+      "tech": [
+        ["Curriculum", "Thai core curriculum, grade 6 (CEFR A1): vocabulary, plurals, articles, prepositions, four tenses."],
+        ["Design", "Vivid colours, pixel graphics, minimal text, 20-minute sessions."],
+        ["Analysis", "ITT (n = 50) showed no overall effect; PP (n = 12, ≥70% attendance) showed a large effect."]
+      ]
+    },
+    {
+      "id": "ecmo",
+      "name": "BreathMo® ECMO Market Entry",
+      "short": "ECMO",
+      "accent": "#4E8F5E",
+      "tags": ["Strategy", "Financial model", "Healthcare"],
+      "stat": "฿230M addressable market, 52.81% IRR, break-even in year 3.",
+      "cover": "img/e1.webp",
+      "video": null,
+      "previews": ["img/e1.webp", "img/e3.webp", "img/e2.webp"],
+      "title": ["ECMO", "for Thailand"],
+      "label": "Market entry strategy · Business pitch",
+      "intro": "A go-to-market plan for bringing a locally supported ECMO heart-lung system to Thai hospitals, from market sizing to a four-year financial model.",
+      "problem": {
+        "text": "ECMO keeps critically ill patients alive, but in Thailand the machines are imported, expensive and come with no local support, so many hospitals that need them don't have one.",
+        "highlight": "imported, expensive and come with no local support"
+      },
+      "highlights": [
+        { "title": "Sizing the market from case counts", "text": "TAM, SAM and SOM built from hospital data, ECMO case counts (300 to 500 a year, growing 10 to 30%) and demand forecasts.", "media": { "img": "img/e1.webp", "alt": "Market sizing slide" } },
+        { "title": "Who to sell to first", "text": "20+ hospitals identified and split into tiers: Bangkok teaching hospitals in year one, then four regions.", "media": { "pair": ["img/e3.webp", "img/e4.webp"], "alt": "Hospital segmentation slides" } },
+        { "title": "A four-year financial model", "text": "Revenue, costs and returns with sensitivity analysis. The plan breaks even in year 3.", "media": { "img": "img/e2.webp", "alt": "Financial model slide" } }
+      ],
+      "stats": [
+        { "number": 230, "prefix": "฿", "suffix": "M", "title": "Addressable market", "text": "With a ฿18M serviceable target in year one." },
+        { "number": 52.81, "decimals": 2, "suffix": "%", "title": "IRR", "text": "With a ฿7.3M NPV over four years." },
+        { "number": 3, "prefix": "Year ", "title": "Break-even", "text": "Direct B2B sales through hospitals, conferences and outreach." }
+      ],
+      "overview": [
+        ["Client", "VADDEE (BreathMo® ECMO)"],
+        ["My role", "Market research, competitor analysis, financial model, pitch"],
+        ["Methods", "TAM-SAM-SOM, feature-price comparison, stakeholder interviews, NPV/IRR"],
+        ["Competitors", "Getinge, Eurosets, Abbott"]
+      ],
+      "deliverables": ["Market sizing", "Competitive analysis", "Value proposition", "Hospital segmentation", "4-year financial model", "Sales roadmap"],
+      "tech": [
+        ["Lessons", "Market sizing assumptions compound into projections. Healthcare sales need clinicians, administrators and procurement on board at once."]
+      ]
+    },
+    {
+      "id": "orthodontic",
+      "name": "Orthodontic Wire FEA",
+      "short": "Orthodontic FEA",
+      "accent": "#3F7F78",
+      "tags": ["Biomechanics", "Ansys FEA", "Lab testing"],
+      "stat": "Low-grade wire was stiffer (13.18 vs 9.39 GPa) with up to 3× the stress concentration.",
+      "cover": "img/o1.webp",
+      "video": null,
+      "previews": ["img/o1.webp", "img/o2.webp", "img/o3.webp"],
+      "title": ["Wire", "under stress"],
+      "label": "Biomechanics · EGBI 261",
+      "intro": "Do cheap orthodontic wires move teeth the same way as standard ones? I tested both in the lab and simulated them on a 3D model of a dental arch.",
+      "problem": {
+        "text": "Low-quality orthodontic wires are common where regulation is weak. They can deliver force unpredictably, which puts tooth movement and patient safety at risk.",
+        "highlight": "deliver force unpredictably"
+      },
+      "highlights": [
+        { "title": "Tensile tests on both wires", "text": "Three samples of each wire, stress-strain curves and Young's modulus for each.", "media": { "img": "img/o3.webp", "alt": "Stress-strain curves" } },
+        { "title": "A 3D dental arch in CAD", "text": "Teeth, gum, periodontal ligament, brackets and wire, modelled and assembled for simulation.", "media": { "pair": ["img/o4.webp", "img/o6.webp"], "alt": "CAD model of the dental arch" } },
+        { "title": "Finite element analysis in Ansys", "text": "Material data from the lab went into Ansys Workbench. Low-quality wire showed stress hotspots up to 3× higher.", "media": { "img": "img/o1.webp", "alt": "Ansys stress map" } }
+      ],
+      "stats": [
+        { "number": 13.18, "decimals": 2, "suffix": " GPa", "title": "Stiffer, less elastic", "text": "Low-grade wire against 9.39 GPa for standard nitinol." },
+        { "number": 3, "suffix": "×", "title": "Stress concentration", "text": "Hotspots that raise the risk of root resorption." },
+        { "number": 6, "title": "Wire samples tested", "text": "Three of each type, tested to failure." }
+      ],
+      "overview": [
+        ["Course", "EGBI 261 Biomechanics II"],
+        ["My role", "Testing, CAD modelling, FEA simulation"],
+        ["Tools", "Ansys Workbench 2024, CAD"],
+        ["Outcome", "Evidence for choosing standard-grade wire"]
+      ],
+      "deliverables": ["Tensile test data", "3D dental model", "FEA simulations", "Clinical recommendation"],
+      "tech": [
+        ["Setup", "Fixed supports at bone anchors, horizontal forces for wire-induced movement, refined mesh."]
+      ]
+    }
+  ]
+}

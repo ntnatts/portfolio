@@ -1,0 +1,68 @@
+{
+  "_help": "Your Experience timeline, newest first. Put **double stars** around key numbers to show them in orange. See HOW-TO-EDIT.md.",
+  "summary": "Internships in AI transformation and med-tech R&D, plus years running marketing and operations for two family businesses.",
+  "jobs": [
+    {
+      "when": "Jun – Jul 2025",
+      "type": "Internship",
+      "role": "Summer Intern, Business Transformation",
+      "company": "IHI Scube Co., Ltd. (Japan)",
+      "place": "Bangkok, Thailand",
+      "about": "Japanese IT services company: consulting, system engineering, ICT, control electronics and mechatronics.",
+      "results": [
+        "Evaluated Devin.ai for workflow optimisation and data automation, reaching **20% faster project cycle times** through prompt engineering and AI integration",
+        "Wrote and presented best-practice reports on AI adoption to **senior executives**, shaping the company's digital transformation roadmap",
+        "Completed advanced training in Tableau analytics and fluid-structure simulation"
+      ]
+    },
+    {
+      "when": "Jun – Aug 2024",
+      "type": "Internship",
+      "role": "Summer Intern, Research & Development",
+      "company": "Honest Medical Co., Ltd. (Taiwan)",
+      "place": "Bangkok, Thailand",
+      "about": "Biomedical device company making medical simulators and surgical training equipment.",
+      "results": [
+        "Contributed to design and testing of biomedical simulators (ERCP, bi-forceps, laryngoscope), reducing clinician training time",
+        "Represented the company at TAGE 2024, presenting surgical training tools to **50+ healthcare professionals**",
+        "Supported Thailand–Taiwan collaboration on product localisation and market entry"
+      ]
+    },
+    {
+      "when": "Aug 2023 – present",
+      "type": "Family business",
+      "role": "Marketing & Operations Coordinator",
+      "company": "Chantara Relax",
+      "place": "Bangkok, Thailand",
+      "about": "Massage, nail and wax shop.",
+      "results": [
+        "Launched loyalty and prepaid programmes, lifting walk-in customer retention to **70%**",
+        "Ran campaigns on Facebook, Instagram and Google Maps, driving a **50% rise** in new nail customers from online",
+        "Analysed sales and client data to tune pricing and promotions: **20% revenue growth** quarter over quarter"
+      ]
+    },
+    {
+      "when": "Aug 2022 – present",
+      "type": "Family business",
+      "role": "Operations & Marketing Manager",
+      "company": "Midori Shokudo",
+      "place": "Bangkok, Thailand",
+      "about": "Japanese restaurant.",
+      "results": [
+        "Optimised seasonal fish procurement and vendor contracts, cutting raw material costs by **15%**",
+        "Designed promotions (Autumn Seafood Week, Premium Set Menu), growing customer turnout by **50%** over a year",
+        "Created the brand identity: logo, visuals and in-store layout"
+      ]
+    },
+    {
+      "when": "During bachelor's",
+      "_todo": "Nat: add the dates (e.g. \"2021 – 2024\") and 2–3 results if you want bullets here.",
+      "type": "Research",
+      "role": "Member, Biomedical Data Lab",
+      "company": "Mahidol University",
+      "place": "Bangkok, Thailand",
+      "about": "Research lab member during my biomedical engineering degree.",
+      "results": []
+    }
+  ]
+}

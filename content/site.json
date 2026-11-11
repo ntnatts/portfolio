@@ -1,0 +1,33 @@
+{
+  "_help": "Site-wide text: your name, the hero, Approach, toolkit and contact links. Put **double stars** around words to make them orange.",
+  "name": {
+    "short": "Nat Suriyapanuwat",
+    "line1": "Nat",
+    "line2": "Suriyapanuwat",
+    "initial": "N",
+    "full": "Matawatee (Nat) Suriyapanuwat"
+  },
+  "eyebrow": "Portfolio · 2026",
+  "tagline": "Master of Management Analytics at McGill. Biomedical engineer turned analyst, working on",
+  "typedPhrases": ["risk models", "market risk", "LLM tools", "business cases", "dashboards"],
+  "boardCaption": "Off the clock · click an emoji to open its blog, drag to play",
+  "approach": {
+    "line1": "The data, the people,",
+    "line2": "and the business need.",
+    "paragraphs": [
+      "I build models and then explain what they mean for the decision: how much capital a bank should hold, whether a learning tool actually helps, where a medical device should launch first.",
+      "Right now I'm focused on risk and data analytics roles."
+    ],
+    "toolkit": ["Python", "SQL", "Deep learning", "GARCH / VaR", "LLMs & RAG", "Tableau", "Financial modeling", "Ansys FEA"]
+  },
+  "contact": {
+    "heading1": "Let's",
+    "heading2": "talk.",
+    "links": [
+      { "label": "LinkedIn", "url": "https://linkedin.com/in/matawatee-suriyapanuwat-4a107515a" },
+      { "label": "GitHub", "url": "https://github.com/ntnatts" },
+      { "label": "nat.nnts@gmail.com", "url": "mailto:nat.nnts@gmail.com" }
+    ]
+  },
+  "credit": "Card effect adapted from \"Project Deck\" by Aakash Mehra"
+}

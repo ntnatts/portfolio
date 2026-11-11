@@ -1,0 +1,4 @@
+{
+  "_help": "List every blog post file here, as \"category/file-name.md\". A post only shows on the site once it is in this list. Newest first is nice but not required: posts are sorted by their date anyway. Example: \"cafe/olimpico-mile-end.md\"",
+  "posts": []
+}

@@ -1,0 +1,14 @@
+{
+  "_help": "The 9 emoji stickers in the hero ('Off the clock'). Each one opens its own blog page. 'intro' is the line under the big title on that blog page: leave it empty (\"\") to show a TODO. 'board' controls where the sticker sits: x and y go from 0 (left/top) to 1 (right/bottom), size 1 = normal, tilt in degrees.",
+  "categories": [
+    { "id": "cafe",    "emoji": "☕", "name": "Café",                 "colour": "#B9763F", "subtitle": "Cafés & coffee",                     "intro": "", "board": { "x": 0.05, "y": 0.06, "size": 1.05, "tilt": -8 } },
+    { "id": "drawing", "emoji": "🎨", "name": "Drawing",              "colour": "#F2600C", "subtitle": "Sketches & art",                     "intro": "", "board": { "x": 0.50, "y": 0.00, "size": 0.9,  "tilt": 10 } },
+    { "id": "travel",  "emoji": "✈️", "name": "Travel",               "colour": "#3F8C9A", "subtitle": "Places & notes",                     "intro": "", "board": { "x": 0.95, "y": 0.10, "size": 1.1,  "tilt": -6 } },
+    { "id": "markets", "emoji": "📈", "name": "Markets & analysis",   "colour": "#D9901A", "subtitle": "Markets, risk & data",               "intro": "", "board": { "x": 0.27, "y": 0.32, "size": 0.85, "tilt": 6 } },
+    { "id": "daily",   "emoji": "📷", "name": "Daily life",           "colour": "#EFB11D", "subtitle": "Photos from my everyday",            "intro": "", "board": { "x": 0.72, "y": 0.34, "size": 1.0,  "tilt": -10 } },
+    { "id": "reading", "emoji": "📚", "name": "Reading",              "colour": "#4E8F5E", "subtitle": "Books I'm reading",                  "intro": "", "board": { "x": 0.02, "y": 0.62, "size": 0.95, "tilt": 8 } },
+    { "id": "health",  "emoji": "🩺", "name": "Medical & healthcare", "colour": "#D9637A", "subtitle": "Health, med-tech & AI",              "intro": "", "board": { "x": 0.42, "y": 0.66, "size": 0.9,  "tilt": -4 } },
+    { "id": "tech",    "emoji": "💻", "name": "Technology",           "colour": "#3F7F78", "subtitle": "Tools, AI & building",               "intro": "", "board": { "x": 0.95, "y": 0.64, "size": 1.05, "tilt": 12 } },
+    { "id": "mind",    "emoji": "🧠", "name": "Mind & myth",          "colour": "#B0698F", "subtitle": "Human behaviour, psychology & myth", "intro": "", "board": { "x": 0.68, "y": 0.98, "size": 0.95, "tilt": -8 } }
+  ]
+}
