@@ -225,6 +225,23 @@ h1.name .rise:nth-child(2) > span{color:var(--emph)}
 .flatdeck .card{transform:none!important;filter:none!important;margin:0;width:min(100%,1200px);align-self:center}
 .flatdeck .dim{opacity:0!important}
 
+/* ---- experience preview (home page, after the projects) ---- */
+.xprev{padding:12vh 6vw 0}
+.xprev-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:22px}
+.more{font-size:14px;font-weight:600;text-decoration:none;color:var(--emph-small);border-bottom:1px solid transparent;transition:border-color .2s}
+.more:hover{border-color:currentColor}
+.xgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.xcard{display:flex;flex-direction:column;background:color-mix(in srgb,var(--panel) 82%,transparent);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;text-decoration:none;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.xcard:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.xcard .xtop{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+.xcard .kind{font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--accent-soft);color:var(--emph-small)}
+.xcard .when{font-size:12.5px;color:var(--muted);text-align:right}
+.xcard h3{margin:0;font-size:19px;line-height:1.25;letter-spacing:-.015em}
+.xcard .org{font-size:14.5px;margin:4px 0 12px}
+.xcard .org span{color:var(--muted)}
+.xcard p{margin:0;font-size:14.5px;line-height:1.55;color:var(--muted)}
+.xcard p b{color:var(--emph-small);font-weight:600}
+
 /* ---- approach ---- */
 .about{padding:14vh 6vw 6vh;display:grid;grid-template-columns:1.1fr 1fr;gap:6vw;align-items:start}
 .about h2{margin:0;font-size:clamp(34px,4.4vw,64px);line-height:1}

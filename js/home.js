@@ -34,6 +34,20 @@ function typed(words){
   }, 70);
 }
 
+/* ---------- Experience preview (after the project deck) ----------
+   One card per job from content/experience.json, showing the first result.
+   The full timeline lives on its own page (#experience). */
+export function buildExperience(exp){
+  const grid = document.getElementById("xgrid");
+  grid.innerHTML = exp.jobs.map((j, i) => `
+    <a class="xcard reveal d${i % 3}" href="#experience">
+      <div class="xtop"><span class="kind">${esc(j.type)}</span><span class="when">${esc(j.when)}</span></div>
+      <h3>${esc(j.role)}</h3>
+      <div class="org">${esc(j.company)}${j.place ? ` <span>· ${esc(j.place)}</span>` : ""}</div>
+      <p>${fmt((j.results && j.results[0]) || j.about)}</p>
+    </a>`).join("");
+}
+
 /* ---------- Off the clock: draggable emoji stickers ---------- */
 export function buildBoard(cats){
   const board = document.getElementById("board");

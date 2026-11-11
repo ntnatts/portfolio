@@ -1,7 +1,7 @@
 /* MAIN: loads content/, sets up the clock, theme toggle and cursor glow,
    and switches between pages based on the address (#var, #experience, #blog-cafe, ...). */
 import { reduce, loadJSON, observeReveals } from "./util.js";
-import { fillSiteText, buildBoard, buildDeck, deckFrame } from "./home.js";
+import { fillSiteText, buildBoard, buildDeck, buildExperience, deckFrame } from "./home.js";
 import { renderCase, caseFrame } from "./case.js";
 import { renderExp, expFrame } from "./experience.js";
 import { renderBlog, renderPost } from "./blog.js";
@@ -129,6 +129,7 @@ function loop(){
   fillSiteText(C.site);
   buildBoard(C.cats);
   buildDeck(C.projects);
+  buildExperience(C.experience);
   wireNav();
   observeReveals(document);
   addEventListener("hashchange", go);
