@@ -126,19 +126,34 @@ html.dark .iconbtn .moon{display:none}
 .glow{position:fixed;left:0;top:0;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:0;
   background:radial-gradient(circle, color-mix(in srgb,var(--accent) 22%,transparent), transparent 62%)}
 
+/* ---- page-wide background gradient ----
+   Soft colour clouds that stay behind every page while you scroll.
+   --tint is set per page by js/main.js: your accent on Home and Experience,
+   the project's colour on a case study, the category colour on a blog.
+   Make it stronger or softer with --bg-strength (0% = off). */
+:root{ --tint:var(--accent); --bg-strength:30%; }
+html.dark{ --bg-strength:34%; }
+body{background:transparent}  /* the cream comes from <html>, so the clouds can sit behind content */
+.bg{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.bg i{position:absolute;border-radius:50%;width:70vmax;height:70vmax;animation:drift 26s ease-in-out infinite;transition:background .8s}
+.bg i:nth-child(1){top:-30vmax;right:-22vmax;background:radial-gradient(closest-side,color-mix(in srgb,var(--tint) var(--bg-strength),transparent),transparent)}
+.bg i:nth-child(2){bottom:-34vmax;left:-26vmax;background:radial-gradient(closest-side,color-mix(in srgb,var(--b3) calc(var(--bg-strength) * 1.6),transparent),transparent);animation-delay:-9s}
+.bg i:nth-child(3){top:30%;left:45%;width:55vmax;height:55vmax;background:radial-gradient(closest-side,color-mix(in srgb,var(--b2) calc(var(--bg-strength) * 1.3),transparent),transparent);animation-delay:-17s}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(4vw,3vh) scale(1.08)}66%{transform:translate(-3vw,-2vh) scale(.95)}}
+
 
 /* =====================================================================
    4. HOME
    ===================================================================== */
 /* ---- hero ---- */
-.hero{position:relative;min-height:calc(100*var(--vh));display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3vw;padding:90px 6vw 60px;overflow:hidden}
+.hero{position:relative;min-height:calc(100*var(--vh));display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3vw;padding:90px 6vw 60px;overflow-x:clip}
 .herotext{position:relative;z-index:1}
 .heroboard{position:relative;z-index:1;align-self:center}
 .boardcap{font-size:12.5px;color:var(--muted);text-align:center;margin-top:6px}
-.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;animation:float 14s ease-in-out infinite;transition:background .6s}
-.b1{width:46vw;height:46vw;background:var(--b1);right:-10vw;top:-12vw}
-.b2{width:30vw;height:30vw;background:var(--b2);right:18vw;bottom:-8vw;animation-delay:-5s}
-.b3{width:22vw;height:22vw;background:var(--b3);left:-6vw;bottom:10vh;animation-delay:-9s}
+.blob{position:absolute;z-index:-1;border-radius:50%;filter:blur(60px);opacity:.55;animation:float 14s ease-in-out infinite;transition:background .6s}
+.b1{width:max(46vw,340px);height:max(46vw,340px);background:var(--b1);right:-10vw;top:-12vw}
+.b2{width:max(30vw,240px);height:max(30vw,240px);background:var(--b2);right:18vw;bottom:-8vw;animation-delay:-5s}
+.b3{width:max(22vw,200px);height:max(22vw,200px);background:var(--b3);left:-6vw;bottom:10vh;animation-delay:-9s}
 @keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(3vw,-2vw) scale(1.06)}66%{transform:translate(-2vw,2vw) scale(.96)}}
 h1.name{position:relative;margin:.25em 0 .2em;font-size:clamp(52px,7.6vw,140px);line-height:1.08;letter-spacing:-.02em}
 h1.name .rise:nth-child(2) > span{color:var(--emph)}
@@ -225,12 +240,16 @@ h1.name .rise:nth-child(2) > span{color:var(--emph)}
    5. CASE STUDY  (--pa = this project's accent colour)
    ===================================================================== */
 .case{position:relative}
-.chero{position:relative;min-height:calc(100*var(--vh));display:grid;grid-template-columns:1fr 1.15fr;gap:4vw;align-items:center;padding:120px 6vw 60px;overflow:hidden}
-.sky{position:absolute;inset:0;z-index:-1}
+.chero{position:relative;min-height:calc(100*var(--vh));display:grid;grid-template-columns:1fr 1.15fr;gap:4vw;align-items:center;padding:120px 6vw 60px;overflow-x:clip}
+/* Top-of-page gradients. They are see-through and fade out over their last part, so they blend
+   into the page-wide background below instead of ending in a hard line. */
+.sky{position:absolute;inset:0 0 -120px;z-index:-1;pointer-events:none;
+  -webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - min(55%,480px)),transparent);
+          mask-image:linear-gradient(to bottom,#000 calc(100% - min(55%,480px)),transparent)}
 .chero .sky{background:
     radial-gradient(60% 70% at 85% 10%, color-mix(in srgb,var(--pa) 55%,transparent), transparent 70%),
     radial-gradient(50% 60% at 10% 90%, color-mix(in srgb,var(--b2) 60%,transparent), transparent 70%),
-    linear-gradient(180deg, color-mix(in srgb,var(--pa) 18%,var(--ground)), var(--ground))}
+    linear-gradient(180deg, color-mix(in srgb,var(--pa) 18%,transparent), transparent)}
 .ctitle{margin:0;font-size:clamp(60px,9vw,150px);line-height:1.04;letter-spacing:-.025em}
 .ctitle .rise:nth-child(2) > span{color:var(--pa)}
 .btn{display:inline-flex;align-items:center;gap:12px;padding:6px 6px 6px 20px;border-radius:999px;background:var(--panel);text-decoration:none;font-size:14px;font-weight:600;border:1px solid var(--line);box-shadow:0 10px 30px -18px rgba(0,0,0,.4)}
@@ -302,7 +321,7 @@ details.tech[open] summary .pm{transform:rotate(45deg)}
 /* =====================================================================
    6. EXPERIENCE
    ===================================================================== */
-.xhero{position:relative;padding:150px 6vw 40px;display:grid;grid-template-columns:1.1fr 1fr;gap:6vw;align-items:end;overflow:hidden}
+.xhero{position:relative;padding:150px 6vw 40px;display:grid;grid-template-columns:1.1fr 1fr;gap:6vw;align-items:end;overflow-x:clip}
 .xhero .sky{background:radial-gradient(50% 80% at 85% 0%,color-mix(in srgb,var(--b2) 60%,transparent),transparent 70%),radial-gradient(40% 60% at 0% 100%,color-mix(in srgb,var(--b3) 55%,transparent),transparent 70%)}
 .xhero h1{margin:0;font-size:clamp(56px,8vw,128px);line-height:1.04}
 .xhero p{margin:0;font-size:18px;line-height:1.55;color:var(--muted);max-width:520px}
@@ -328,10 +347,10 @@ details.tech[open] summary .pm{transform:rotate(45deg)}
 /* =====================================================================
    7. BLOG  (--ca = this category's colour)
    ===================================================================== */
-.bhero{position:relative;min-height:calc(78*var(--vh));padding:130px 6vw 60px;display:grid;grid-template-columns:1.2fr 1fr;align-items:center;gap:4vw;overflow:hidden}
+.bhero{position:relative;min-height:calc(78*var(--vh));padding:130px 6vw 60px;display:grid;grid-template-columns:1.2fr 1fr;align-items:center;gap:4vw;overflow-x:clip}
 .bhero .sky{background:
     radial-gradient(55% 70% at 80% 30%, color-mix(in srgb,var(--ca) 45%,transparent), transparent 70%),
-    linear-gradient(180deg, color-mix(in srgb,var(--ca) 14%,var(--ground)), var(--ground))}
+    linear-gradient(180deg, color-mix(in srgb,var(--ca) 14%,transparent), transparent)}
 .bhero h1{margin:14px 0 0;font-size:clamp(56px,8.5vw,140px);line-height:1.04;letter-spacing:-.02em}
 .bhero h1 em{color:color-mix(in srgb,var(--ca) 82%,var(--ink))}
 .bhero .intro{margin-top:22px}

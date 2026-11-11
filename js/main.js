@@ -35,6 +35,10 @@ async function go(){
   route = project ? "case" : cat ? "blog" : isExp ? "experience" : "home";
   [caseEl, blogEl, expEl].forEach(e => { e.innerHTML = ""; e.classList.remove("on"); });
   home.classList.toggle("on", route === "home");
+  // colour of the page-wide background gradient (see "page-wide background gradient" in css/style.css)
+  const tint = project ? project.accent : cat ? cat.colour : isExp ? "var(--yellow)" : "";
+  if (tint) document.documentElement.style.setProperty("--tint", tint);
+  else document.documentElement.style.removeProperty("--tint");
 
   let title = "";
   if (project){ title = renderCase(project, C.projects); caseEl.classList.add("on"); }
