@@ -191,6 +191,36 @@ Open `css/style.css`. The first section, **DESIGN TOKENS**, lists every colour w
 
 ---
 
-## 8. Publish
+## 8. Check your content
 
-Once the site is on GitHub Pages, publishing is: save your changes → commit → push. GitHub rebuilds the site in about a minute. (We'll fill in the exact steps here once the repo is set up.)
+Before publishing, you can run the same check GitHub runs. In Terminal, from the site folder:
+
+```
+node scripts/check-content.mjs
+```
+
+- **✅ Content looks good** means you're fine.
+- **❌ problems** lists each one with the file and, for JSON mistakes, the line number. Note: a missing comma is usually reported on the line *after* the one that needs it.
+- **⚠️ notes** are reminders (a post with no excerpt, a draft that isn't in `index.json`). They don't stop publishing.
+
+---
+
+## 9. Publish
+
+The site lives at **https://ntnatts.github.io/portfolio/** and the code at **https://github.com/ntnatts/portfolio**.
+
+To publish, commit and push to `main`, either in Terminal:
+
+```
+cd ~/Desktop/nat-portfolio
+git add -A
+git commit -m "Add café post"
+git push
+```
+
+or on github.com: open a file, click the pencil icon, edit, then **Commit changes**.
+
+Each push does this automatically:
+1. GitHub runs the content check.
+2. **If the check passes**, the site is published, usually within about 2 minutes.
+3. **If it fails**, nothing is published, so the live site stays on the last working version, and GitHub emails you. To see what's wrong, open the repo's **Actions** tab, click the failed run, then **Check content**. It shows the same list as step 8. Fix it and push again.
